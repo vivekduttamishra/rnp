@@ -17,7 +17,8 @@ const styles= StyleSheet.create({
         padding:10,
         fontSize:14,
         marginVertical:20,
-        height:300
+        height:300,
+        textAlignVertical:'top'
 
 
     },
@@ -70,5 +71,13 @@ const BlogEditor= ({blog,onTitleChange,onBodyChange,onSubmit})=> {
         </View>
     );
 };
+
+BlogEditor.defaultProps={
+    blog:{
+        id:0,
+        title:'',
+        body:''
+    }
+}
 
 export default BlogEditor;
