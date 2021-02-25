@@ -15,7 +15,7 @@ export default (reducer, actions, initState=null)=>{
         
          for(let key in actions){
              //key: fn(dispatch)=> ()=>{}
-             dispatchableActions[key]=actions[key](dispatch);
+             dispatchableActions[key]=actions[key](dispatch,state);
          }
         // _dispatch=dispatch;
 

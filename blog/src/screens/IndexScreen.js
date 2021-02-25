@@ -43,6 +43,9 @@ const styles= StyleSheet.create({
 
 const BlogList=({blogs,onSelect,onDeleteItem})=>{
 
+    
+
+
     if(!blogs.length)
         return <Text>No Blogs Yet. Start a New one</Text>
 
@@ -70,15 +73,16 @@ const IndexScreen= ({navigation})=> {
     //Todo Init
    //const value=getBlogs();
    //const value=useContext(BlogContext);
-   let {state,dispatch}= useContext(BlogContext);
-   //let api=getBlogApi();
-    //console.log('blogs api',api);
-    //console.log('state',state);
-    const deleteItem=(id)=>{
-    
-        console.log('delete',id);
-        dispatch({type:'remove_post',payload:id});
-    };
+   let {state,getBlogs,getBlogById,removeBlog,dispatch}= useContext(BlogContext);
+   
+   React.useEffect(()=>{
+       getBlogs();
+
+    //    const listener=navigation.addListener('didFocus',getBlogs);
+    //    return ()=>{
+    //        listener.remove();
+    //    }
+   },[]);
 
     const selectItem=(id)=>{
         dispatch({type:'select_post', payload:id});
@@ -86,7 +90,7 @@ const IndexScreen= ({navigation})=> {
     };
 
     const addBlog=()=>{
-        console.log('adding new blog');
+        
         navigation.navigate('BlogAddScreen');
     };
 
@@ -96,7 +100,7 @@ const IndexScreen= ({navigation})=> {
            <BlogList 
                     blogs={state.blogs} 
                     onSelect={selectItem}
-                    onDeleteItem={deleteItem} 
+                    onDeleteItem={removeBlog} 
             />     
               
         </View>
